@@ -63,11 +63,21 @@ if ($page == 'MainPage') {
             $userId = $_SESSION['user_id'];
             $rating = $_POST['rating'];
             if (addMovie($title, $userId, $rating)) {
-                $success_msg = "Movie added successfully.";
+                echo "Movie added successfully.";
             } else {
-                echo $error_msg = "Failed to add the movie.";
+                echo "Failed to add the movie.";
             }
             include('main.php');
+            break;
+
+        case 'DeleteMovie':
+            $movieId = $_POST['movieId'];
+            $userId = $_SESSION['user_id'];
+            if (deleteMovie($movieId, $userId)) {
+                echo "Movie deleted successfully.";
+            } else {
+                echo "Failed to delete the movie.";
+            }
             break;
 
         case 'SignOut':

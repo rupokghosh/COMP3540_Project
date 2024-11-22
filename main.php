@@ -66,7 +66,7 @@
 
         <h2>Your Watchlist</h2>
         <ul id="watchlist">
-            <!-- Movies will be dynamically loaded here -->
+
         </ul>
 
         <button id="signOut">Sign Out</button>
@@ -83,7 +83,7 @@
                     const watchlist = $('#watchlist');
                     watchlist.empty();
 
-                    // Render each movie with buttons
+
                     movies.forEach((movie) => {
                         const listItem = $(`
                 <li>
@@ -111,7 +111,20 @@
                     title: title,
                     rating: 0,
                 }, function(response) {
-                    console.log(response); // Log the response for debugging
+                    alert(response);
+                    fetchMovies();
+                });
+            });
+
+            // Delete Movie
+            $(document).on('click', '.delete-btn', function() {
+                const movieId = $(this).data('id');
+                $.post('controller.php', {
+                    page: 'MainPage',
+                    command: 'DeleteMovie',
+                    movieId: movieId
+                }, function(response) {
+                    console.log(response);
                     alert(response);
                     fetchMovies();
                 });
