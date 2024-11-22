@@ -89,7 +89,7 @@
                 <li>
                     ${movie.title}
                     <button class="watched-btn" data-id="${movie.id}" data-status="${movie.status}">
-                        ${movie.status == 1 ? "Watched" : "Mark as Watched"}
+                     mark as watched 
                     </button>
                     <button class="delete-btn" data-id="${movie.id}">Delete</button>
                 </li>
@@ -111,6 +111,20 @@
                     title: title,
                     rating: 0,
                 }, function(response) {
+                    alert(response);
+                    fetchMovies();
+                });
+            });
+
+            // Mark as Watched
+            $(document).on('click', '.watched-btn', function() {
+                const movieId = $(this).data('id');
+                $.post('controller.php', {
+                    page: 'MainPage',
+                    command: 'MarkAsWatched',
+                    movieId: movieId
+                }, function(response) {
+                    console.log(response);
                     alert(response);
                     fetchMovies();
                 });

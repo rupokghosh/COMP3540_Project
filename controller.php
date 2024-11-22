@@ -70,6 +70,16 @@ if ($page == 'MainPage') {
             include('main.php');
             break;
 
+        case 'MarkAsWatched':
+            $movieId = $_POST['movieId'];
+            $userId = $_SESSION['user_id'];
+            if (markAsWatched($movieId, $userId)) {
+                echo "Movie marked as watched.";
+            } else {
+                echo "Failed to mark the movie as watched.";
+            }
+            break;
+
         case 'DeleteMovie':
             $movieId = $_POST['movieId'];
             $userId = $_SESSION['user_id'];
