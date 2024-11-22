@@ -66,8 +66,20 @@ function addRating($movieId, $userId, $rating)
 function markAsWatched($movieId, $userId)
 {
     global $conn;
-    $query = "UPDATE movies SET status = 1 WHERE id = $movieId AND user_id = $userId";
-    return mysqli_query($conn, $query);
+
+    $query1 = "UPDATE movies SET status = 1 WHERE id = $movieId AND user_id = $userId";
+    if (!mysqli_query($conn, $query1)) {
+        die("Error updating status: " . mysqli_error($conn));
+    }
+
+
+    $query2 = "INSERT INTO archived (movie_id, user_id, rating) 
+               SELECT id, user_id, rating FROM movies WHERE id = $movieId AND user_id = $userId";
+    if (!mysqli_query($conn, $query2)) {
+        die("Error inserting into archived: " . mysqli_error($conn));
+    }
+
+    return true;
 }
 
 // archived movie functions
