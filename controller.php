@@ -97,3 +97,13 @@ if ($page == 'MainPage') {
             break;
     }
 }
+if ($page == 'ArchivedPage') {
+
+    switch ($command) {
+        case 'FetchArchivedMovies':
+            $userId = $_SESSION['user_id'];
+            $movies = fetchArchivedMovies($userId);
+            echo json_encode($movies);
+            break;
+    }
+}

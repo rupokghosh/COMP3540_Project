@@ -19,6 +19,8 @@ function loginUser($email, $password)
     return mysqli_num_rows($result) > 0 ? mysqli_fetch_assoc($result) : null;
 }
 
+// movie functions
+
 function fetchMovies($userId)
 {
     global $conn;
@@ -66,4 +68,32 @@ function markAsWatched($movieId, $userId)
     global $conn;
     $query = "UPDATE movies SET status = 1 WHERE id = $movieId AND user_id = $userId";
     return mysqli_query($conn, $query);
+}
+
+// archived movie functions
+
+function fetchArchivedMovies($userId)
+{
+    global $conn;
+    $query = "
+        SELECT 
+            archived.movie_id, 
+            archived.user_id, 
+            archived.rating, 
+            movies.title AS movie_name 
+        FROM 
+            archived
+        JOIN 
+            movies 
+        ON 
+            archived.movie_id = movies.id
+        WHERE 
+            archived.user_id = $userId
+    ";
+    $result = mysqli_query($conn, $query);
+    $movies = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $movies[] = $row;
+    }
+    return $movies;
 }

@@ -1,3 +1,8 @@
+<?php
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,8 +57,9 @@
 <body>
     <div class="sidebar">
         <h1>MovieList</h1>
-        <a href="">watched movies</a>
-        <a href="">profile</a>
+        <a href="main.php">your movie list</a>
+        <a href="archived.php">watched movies</a>
+        <a href="profile.php">profile</a>
     </div>
     <div class="content">
         <h1>Welcome, <?php echo $_SESSION['username']; ?>!</h1>
