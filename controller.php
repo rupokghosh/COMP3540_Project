@@ -55,9 +55,7 @@ if ($page == 'MainPage') {
         case 'FetchMovies':
             $userId = $_SESSION['user_id'];
             $movies = fetchMovies($userId);
-            foreach ($movies as $movie) {
-                echo "<li>{$movie['title']}</li>";
-            }
+            echo json_encode($movies);
             break;
 
         case 'AddMovie':
@@ -67,7 +65,7 @@ if ($page == 'MainPage') {
             if (addMovie($title, $userId, $rating)) {
                 $success_msg = "Movie added successfully.";
             } else {
-                $error_msg = "Failed to add the movie.";
+                echo $error_msg = "Failed to add the movie.";
             }
             include('main.php');
             break;

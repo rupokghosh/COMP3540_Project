@@ -77,49 +77,43 @@
                 $.post('controller.php', {
                     page: 'MainPage',
                     command: 'FetchMovies'
-                }, function(data) {
-                    $('#watchlist').html(data);
+                }, function(response) {
+                    const movies = JSON.parse(response);
+                    console.log("Parsed Movies: ", movies);
+                    const watchlist = $('#watchlist');
+                    watchlist.empty();
+
+                    // Render each movie with buttons
+                    movies.forEach((movie) => {
+                        const listItem = $(`
+                <li>
+                    ${movie.title}
+                    <button class="watched-btn" data-id="${movie.id}" data-status="${movie.status}">
+                        ${movie.status == 1 ? "Watched" : "Mark as Watched"}
+                    </button>
+                    <button class="delete-btn" data-id="${movie.id}">Delete</button>
+                </li>
+            `);
+                        watchlist.append(listItem);
+                    });
                 });
             }
+
 
             fetchMovies();
 
             $('#addMovieForm').submit(function(event) {
-                event.preventDefault(); 
-
-                const title = $('#movieTitle').val().trim(); 
-
-                if (!title) {
-                    alert("Please enter a movie title.");
-                    return;
-                }
-
-                const postData = {
+                event.preventDefault();
+                const title = $('#movieTitle').val();
+                $.post('controller.php', {
                     page: 'MainPage',
                     command: 'AddMovie',
                     title: title,
-                    rating: 0
-                };
-
-
-                $.ajax({
-                    url: 'controller.php', 
-                    type: 'POST', 
-                    data: postData, 
-                    success: function(response) {
-                        console.log("Response from controller:", response); 
-                        alert(response); // Notify user about the response
-
-                        fetchMovies();
-                    },
-                    error: function(xhr, status, error) {
-                        console.error("AJAX Error:", {
-                            status: status,
-                            error: error,
-                            xhr: xhr.responseText
-                        });
-                        alert("An error occurred while adding the movie. Please try again.");
-                    }
+                    rating: 0,
+                }, function(response) {
+                    console.log(response); // Log the response for debugging
+                    alert(response);
+                    fetchMovies();
                 });
             });
 
