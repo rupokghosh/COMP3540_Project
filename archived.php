@@ -12,10 +12,8 @@ session_start();
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            display: flex;
         }
 
         .sidebar {
@@ -23,27 +21,32 @@ session_start();
             background-color: #333;
             color: white;
             padding: 15px;
-            height: 100vh;
+            float: left;
+            height: 100%;
             position: fixed;
         }
 
         .sidebar h1 {
             font-size: 24px;
             margin-bottom: 20px;
+            text-align: center;
         }
 
         .sidebar a {
             color: white;
             text-decoration: none;
             display: block;
-            margin: 10px 0;
+            margin: 40px 0;
             padding: 10px;
             border-radius: 4px;
+            background-color: #444;
+            text-align: center;
         }
 
         .sidebar a:hover {
             background-color: #575757;
         }
+
 
         .content {
             margin-left: 220px;
