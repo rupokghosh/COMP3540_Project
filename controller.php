@@ -107,5 +107,15 @@ if ($page == 'ArchivedPage') {
             $movies = fetchArchivedMovies($userId);
             echo json_encode($movies);
             break;
+        case 'AddRating':
+            $movieId = $_POST['movie_id'];
+            $rating = $_POST['rating'];
+            $userId = $_SESSION['user_id'];
+            if (addRating($movieId, $userId, $rating)) {
+                echo "Rating added successfully.";
+            } else {
+                echo "Failed to add the rating.";
+            }
+            break;
     }
 }

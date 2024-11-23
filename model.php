@@ -58,7 +58,7 @@ function deleteMovie($movieId, $userId)
 function addRating($movieId, $userId, $rating)
 {
     global $conn;
-    $query = "UPDATE movies SET rating = $rating WHERE id = $movieId AND user_id = $userId";
+    $query = "UPDATE archived SET rating = $rating WHERE movie_id = $movieId AND user_id = $userId";
     return mysqli_query($conn, $query);
 }
 

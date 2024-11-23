@@ -83,14 +83,59 @@ session_start();
                     console.log(movies)
                     var html = '';
                     movies.forEach(function(movie) {
-                        html += '<div>';
-                        html += '<h2>' + movie.movie_name + '</h2>';
-                        html += '<p>Rating: ' + movie.rating + '</p>';
-                        html += '</div>';
+                        html += `
+                   <div class="movie-card">
+                        <h2>${movie.movie_name}</h2>
+                        <div class="movie-details">
+                            ${
+                                movie.rating == 0
+                                ? `<button class="add-rating-btn" data-movie-id="${movie.movie_id}">Add Rating</button>`
+                                : `<p class="movie-rating">Rating: ${movie.rating}/5</p>`
+                            }
+                        </div>
+                    </div>
+                `;
                     });
                     $('#movies').html(html);
+                    // Add event listener for Add Rating button
+                    $('.add-rating-btn').on('click', function() {
+                        var movieId = $(this).data('movie-id');
+                        console.log(movieId);
+                        addRating(movieId);
+                    })
                 }
+
+
             });
+        }
+
+        function addRating(movieId) {
+            var newRating = prompt("Enter your rating (1-5):");
+            parseInt(newRating);
+            parseInt(movieId)
+            console.log(newRating);
+            console.log(movieId);
+            if (newRating >= 1 && newRating <= 5) {
+                $.ajax({
+                    url: 'controller.php',
+                    type: 'POST',
+                    data: {
+                        page: 'ArchivedPage',
+                        command: 'AddRating',
+                        movie_id: movieId,
+                        rating: newRating,
+                    },
+                    success: function() {
+                        alert('Rating added successfully fr!');
+                        fetchMovies(); // Refresh the movies list
+                    },
+                    error: function() {
+                        alert('Failed to add rating.');
+                    }
+                });
+            } else {
+                alert('Please enter a valid rating between 1 and 5.');
+            }
         }
     </script>
 </body>
