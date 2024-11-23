@@ -109,3 +109,35 @@ function fetchArchivedMovies($userId)
     }
     return $movies;
 }
+
+// profile functions
+
+function updateUsername($userId, $newUsername)
+{
+    global $conn;
+    $query = "UPDATE User_Details SET username = '$newUsername' WHERE id = $userId";
+    $result = mysqli_query($conn, $query);
+    return $result;
+}
+
+function deleteAccount($userId)
+{
+    global $conn;
+
+    $query1 = "DELETE FROM archived WHERE user_id = $userId";
+    if (!mysqli_query($conn, $query1)) {
+        die("Error deleting archived movies: " . mysqli_error($conn));
+    }
+
+    $query2 = "DELETE FROM movies WHERE user_id = $userId";
+    if (!mysqli_query($conn, $query2)) {
+        die("Error deleting movies: " . mysqli_error($conn));
+    }
+
+    $query3 = "DELETE FROM User_Details WHERE id = $userId";
+    if (!mysqli_query($conn, $query3)) {
+        die("Error deleting account: " . mysqli_error($conn));
+    }
+
+    return true;
+}

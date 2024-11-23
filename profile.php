@@ -8,7 +8,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -61,10 +61,60 @@ session_start();
     </div>
     <div class="content">
         <h1>Profile</h1>
-        <p>Username: <?php echo $_SESSION['username']; ?></p>
+        <p>Username: <span id="username-display"><?php echo $_SESSION['username']; ?></span></p>
+        <input type="text" id="new-username" placeholder="Enter new username">
+        <button id="update-username-btn">Update Username</button>
         <p>Email: <?php echo $_SESSION['email']; ?></p>
-        <button>Delete Account</button>
+        <button id="delete-account-btn">Delete Account</button>
     </div>
+    <script>
+        $("#update-username-btn").on("click", function() {
+            const newUsername = $("#new-username").val();
+            if (newUsername === "") {
+                alert("Please enter a new username.");
+                return;
+            }
+
+            $.ajax({
+                url: "controller.php",
+                type: "POST",
+                data: {
+                    page: "ProfilePage",
+                    command: "updateUsername",
+                    username: newUsername,
+                },
+                success: function(response) {
+                    alert(response);
+                    location.reload();
+                },
+                error: function() {
+                    alert("An error occurred while updating the username.");
+                }
+            });
+        });
+
+        $("#delete-account-btn").on("click", function() {
+            if (!confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
+                return;
+            }
+
+            $.ajax({
+                url: "controller.php",
+                type: "POST",
+                data: {
+                    page: "ProfilePage",
+                    command: "deleteAccount"
+                },
+                success: function(response) {
+                    alert(response);
+                    window.location.href = "login.php";
+                },
+                error: function() {
+                    alert("An error occurred while deleting the account.");
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

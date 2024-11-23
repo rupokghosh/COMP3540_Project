@@ -119,3 +119,29 @@ if ($page == 'ArchivedPage') {
             break;
     }
 }
+
+if ($page == 'ProfilePage') {
+    switch ($command) {
+        case 'updateUsername':
+            $userId = $_SESSION['user_id'];
+            $newUsername = $_POST['username'];
+            $result = updateUsername($userId, $newUsername);
+            if ($result) {
+                $_SESSION['username'] = $newUsername;
+                echo "Username updated successfully";
+            } else {
+                echo "Failed to update username";
+            }
+            break;
+
+        case 'deleteAccount':
+            $userId = $_SESSION['user_id'];
+            $result = deleteAccount($userId);
+            if ($result) {
+                echo "Account deleted successfully";
+            } else {
+                echo  "Failed to delete account";
+            }
+            break;
+    }
+}
