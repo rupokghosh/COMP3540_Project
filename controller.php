@@ -22,6 +22,7 @@ if ($page == 'StartPage') {
                 $_SESSION['signedin'] = 'YES';
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['user_id'] = $user['user_id'];
+                $_SESSION['email'] = $email;
                 echo "userrrr" . $_SESSION['user_id'];
                 include('main.php');
             } else {
@@ -40,6 +41,7 @@ if ($page == 'StartPage') {
                     $_SESSION['signedin'] = 'YES';
                     $_SESSION['username'] = $username;
                     $_SESSION['user_id'] = $user['user_id'];
+                    $_SESSION['email'] = $email;
                     include('main.php');
                 }
             } else {

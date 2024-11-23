@@ -60,8 +60,10 @@ session_start();
         <a href="archived.php">watched movies</a>
         <a href="profile.php">profile</a>
     </div>
-    <h1>Movies you have already watched!</h1>
-    <div id="movies">
+    <div class="content">
+        <h1>Movies you have already watched!</h1>
+        <div id="movies">
+        </div>
     </div>
     <script>
         $(document).ready(function() {
