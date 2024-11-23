@@ -62,21 +62,33 @@ session_start();
     </div>
     <div class="content">
         <h1>Movies you have already watched!</h1>
+        <div>
+            <label for="sort-options">Sort by:</label>
+            <select id="sort-options">
+                <option value="name">Name</option>
+                <option value="date">Date</option>
+            </select>
+        </div>
         <div id="movies">
         </div>
     </div>
     <script>
         $(document).ready(function() {
             fetchMovies();
+            $('#sort-options').on('change', function() {
+                fetchMovies();
+            });
         });
 
         function fetchMovies() {
+            var sortOption = $('#sort-options').val();
             $.ajax({
                 url: 'controller.php',
                 type: 'POST',
                 data: {
                     page: 'ArchivedPage',
-                    command: 'FetchArchivedMovies'
+                    command: 'FetchArchivedMovies',
+                    sort: sortOption
                 },
                 success: function(response) {
                     var movies = JSON.parse(response);

@@ -104,7 +104,8 @@ if ($page == 'ArchivedPage') {
     switch ($command) {
         case 'FetchArchivedMovies':
             $userId = $_SESSION['user_id'];
-            $movies = fetchArchivedMovies($userId);
+            $sort = isset($_POST['sort']) ? $_POST['sort'] : 'name';
+            $movies = fetchArchivedMovies($userId, $sort);
             echo json_encode($movies);
             break;
         case 'AddRating':

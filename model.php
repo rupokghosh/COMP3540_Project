@@ -24,6 +24,7 @@ function loginUser($email, $password)
 function fetchMovies($userId)
 {
     global $conn;
+
     $query = "SELECT * FROM movies WHERE user_id = $userId AND status = 0";
     $result = mysqli_query($conn, $query);
     $movies = [];
@@ -84,9 +85,19 @@ function markAsWatched($movieId, $userId)
 
 // archived movie functions
 
-function fetchArchivedMovies($userId)
+function fetchArchivedMovies($userId, $sort)
 {
     global $conn;
+
+    $orderBy = '';
+    if ($sort === 'name') {
+        $orderBy = 'movie_name ASC';
+    } elseif ($sort === 'date') {
+        $orderBy = 'archived_at DESC';
+    } else {
+        $orderBy = 'movie_name ASC';
+    }
+
     $query = "
         SELECT 
             archived.movie_id, 
@@ -101,6 +112,7 @@ function fetchArchivedMovies($userId)
             archived.movie_id = movies.id
         WHERE 
             archived.user_id = $userId
+        ORDER BY $orderBy
     ";
     $result = mysqli_query($conn, $query);
     $movies = [];
