@@ -55,13 +55,6 @@ function deleteMovie($movieId, $userId)
     return mysqli_query($conn, $query);
 }
 
-// Add or update rating for a movie
-function addRating($movieId, $userId, $rating)
-{
-    global $conn;
-    $query = "UPDATE archived SET rating = $rating WHERE movie_id = $movieId AND user_id = $userId";
-    return mysqli_query($conn, $query);
-}
 
 // Mark a movie as watched (archived)
 function markAsWatched($movieId, $userId)
@@ -121,6 +114,15 @@ function fetchArchivedMovies($userId, $sort)
     }
     return $movies;
 }
+
+// Add or update rating for a movie
+function addRating($movieId, $userId, $rating)
+{
+    global $conn;
+    $query = "UPDATE archived SET rating = $rating WHERE movie_id = $movieId AND user_id = $userId";
+    return mysqli_query($conn, $query);
+}
+
 
 // profile functions
 
