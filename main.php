@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 ?>
 
@@ -13,10 +15,8 @@ session_start();
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            display: flex;
         }
 
         .sidebar {
@@ -24,22 +24,26 @@ session_start();
             background-color: #333;
             color: white;
             padding: 15px;
-            height: 100vh;
+            float: left;
+            height: 100%;
             position: fixed;
         }
 
         .sidebar h1 {
             font-size: 24px;
             margin-bottom: 20px;
+            text-align: center;
         }
 
         .sidebar a {
             color: white;
             text-decoration: none;
             display: block;
-            margin: 10px 0;
+            margin: 40px 0;
             padding: 10px;
             border-radius: 4px;
+            background-color: #444;
+            text-align: center;
         }
 
         .sidebar a:hover {
@@ -49,7 +53,69 @@ session_start();
         .content {
             margin-left: 220px;
             padding: 20px;
-            flex-grow: 1;
+        }
+
+        #movieTitle {
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        #movie-container {
+            margin: 20px 350px 30px 0;
+            padding: 10px;
+            border: 1px solid;
+            border-radius: 4px;
+            background-color: #FFF6E9;
+        }
+
+        .movie {
+            font-size: 18px;
+            font-weight: bold;
+            padding: 8px;
+        }
+
+        .watched-btn {
+            font-size: 12px;
+            padding: 10px 15px;
+            background-color: lightpink;
+        }
+
+        .delete-btn {
+            font-size: 12px;
+            padding: 10px 15px;
+            background-color: lightcoral;
+        }
+
+        #addMovieForm button {
+            background-color: lightgrey;
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+
+        #signOut {
+            margin-top: 30px;
+            padding: 10px 15px;
+            background-color: #FC8F54;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+
         }
     </style>
 </head>
@@ -63,6 +129,7 @@ session_start();
     </div>
     <div class="content">
         <h1>Welcome, <?php echo $_SESSION['username']; ?>!</h1>
+        <hr>
 
         <h2>Add a Movie</h2>
         <form id="addMovieForm">
@@ -71,9 +138,9 @@ session_start();
         </form>
 
         <h2>Your Watchlist</h2>
-        <ul id="watchlist">
+        <div id="watchlist">
 
-        </ul>
+        </div>
 
         <button id="signOut">Sign Out</button>
     </div>
@@ -92,13 +159,13 @@ session_start();
 
                     movies.forEach((movie) => {
                         const listItem = $(`
-                <li>
-                    ${movie.title}
+                <div id="movie-container">
+                    <div class="movie"> ${movie.title}</div>
                     <button class="watched-btn" data-id="${movie.id}" data-status="${movie.status}">
                      mark as watched 
                     </button>
                     <button class="delete-btn" data-id="${movie.id}">Delete</button>
-                </li>
+                </div>
             `);
                         watchlist.append(listItem);
                     });
