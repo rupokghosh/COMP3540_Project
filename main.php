@@ -147,7 +147,7 @@ if (session_status() == PHP_SESSION_NONE) {
         <a href="profile.php">profile</a>
     </div>
     <div class="content">
-        <h1>Welcome, <?php echo $_SESSION['username']; ?>!</h1>
+        <h1>Movielist of <?php echo $_SESSION['username']; ?>!</h1>
         <hr>
 
         <h2>Add a Movie</h2>
