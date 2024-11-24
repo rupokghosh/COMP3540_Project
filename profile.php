@@ -62,7 +62,7 @@ session_start();
             margin-bottom: 10px;
         }
 
-        input[type="text"] {
+        input {
             padding: 10px;
             font-size: 14px;
             margin-bottom: 10px;
@@ -77,7 +77,6 @@ session_start();
             color: white;
             border: none;
             border-radius: 4px;
-            cursor: pointer;
         }
     </style>
 </head>

@@ -51,7 +51,36 @@ session_start();
         .content {
             margin-left: 220px;
             padding: 20px;
-            flex-grow: 1;
+        }
+
+        #options {
+            margin: 20px;
+        }
+
+        .movie-card {
+            border: 1px solid;
+            border-radius: 4px;
+            padding: 5px 10px 5px 10px;
+            margin: 20px;
+            background-color: #E5E1DA;
+            width: 50vw;
+        }
+
+        .add-rating-btn .movie-rating {
+            margin: 10px;
+        }
+
+        .add-rating-btn {
+            font-size: 12px;
+            padding: 10px 15px;
+            background-color: #89A8B2;
+            border-radius: 4px;
+            border: none;
+        }
+
+        .add-rating-btn:hover {
+            background-color: #4A90E2;
+
         }
     </style>
 </head>
@@ -65,7 +94,8 @@ session_start();
     </div>
     <div class="content">
         <h1>Movies you have already watched!</h1>
-        <div>
+        <hr>
+        <div id="options">
             <label for="sort-options">Sort by:</label>
             <select id="sort-options">
                 <option value="name">Name</option>
@@ -100,7 +130,7 @@ session_start();
                     movies.forEach(function(movie) {
                         html += `
                    <div class="movie-card">
-                        <h2>${movie.movie_name}</h2>
+                        <h3>${movie.movie_name}</h3>
                         <div class="movie-details">
                             ${
                                 movie.rating == 0

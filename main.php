@@ -17,6 +17,7 @@ if (session_status() == PHP_SESSION_NONE) {
         body {
             margin: 0;
             padding: 0;
+            background-color: #FBFBFB;
         }
 
         .sidebar {
@@ -78,6 +79,7 @@ if (session_status() == PHP_SESSION_NONE) {
             border: 1px solid;
             border-radius: 4px;
             background-color: #E5E1DA;
+            width: 50vw;
         }
 
         .movie {
