@@ -92,10 +92,19 @@ if (session_status() == PHP_SESSION_NONE) {
             background-color: #80C4E9;
         }
 
+        .watched-btn:hover {
+            background-color: lightskyblue
+        }
+
         .delete-btn {
             font-size: 12px;
             padding: 10px 15px;
             background-color: #89A8B2;
+            color: white;
+        }
+
+        .delete-btn:hover {
+            background-color: #333;
         }
 
         #addMovieForm button {
@@ -108,6 +117,9 @@ if (session_status() == PHP_SESSION_NONE) {
             font-size: 16px;
         }
 
+        #addMovieForm button:hover {
+            background-color: #575757;
+        }
 
         #signOut {
             margin-top: 30px;
@@ -118,6 +130,9 @@ if (session_status() == PHP_SESSION_NONE) {
             border-radius: 4px;
             font-size: 14px;
 
+        }
+        #signOut:hover {
+            background-color: purple;
         }
     </style>
 </head>
