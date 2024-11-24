@@ -83,13 +83,14 @@ session_start();
 
 <body>
     <div class="sidebar">
-        <h1>ArchivedList</h1>
+        <h1>Profile</h1>
         <a href="main.php">your movie list</a>
         <a href="archived.php">watched movies</a>
         <a href="profile.php">profile</a>
     </div>
     <div class="content">
-        <h1>Profile</h1>
+        <h1>Profile Details</h1>
+        <hr>
         <h3>Username: <span id="username-display"><?php echo $_SESSION['username']; ?></span></h3>
         <input type="text" id="new-username" placeholder="Enter new username">
         <button id="update-username-btn">Update Username</button>
