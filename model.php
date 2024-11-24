@@ -40,11 +40,7 @@ function addMovie($title, $userId, $rating)
     global $conn;
     $query = "INSERT INTO movies (title, user_id, status, rating) VALUES ('$title', $userId, 0, $rating)";
     $result = mysqli_query($conn, $query);
-    if ($result) {
-        echo "Movie added successfully!";
-    } else {
-        echo "Error adding movie: " . $conn->error;
-    }
+    return $result;
 }
 
 // Delete a movie

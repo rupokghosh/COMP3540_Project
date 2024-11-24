@@ -203,7 +203,7 @@ if (session_status() == PHP_SESSION_NONE) {
                     title: title,
                     rating: 0,
                 }, function(response) {
-                    alert(response);
+                    alert("Movie added successfully.");
                     fetchMovies();
                 });
             });
@@ -216,7 +216,6 @@ if (session_status() == PHP_SESSION_NONE) {
                     command: 'MarkAsWatched',
                     movieId: movieId
                 }, function(response) {
-                    console.log(response);
                     alert(response);
                     fetchMovies();
                 });

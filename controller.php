@@ -23,10 +23,9 @@ if ($page == 'StartPage') {
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['user_id'] = $user['user_id'];
                 $_SESSION['email'] = $email;
-                echo "userrrr" . $_SESSION['user_id'];
                 include('main.php');
             } else {
-                $error_msg = "Invalid email or password. Please try again.";
+                echo "Invalid email or password. Please try again.";
                 include('login.php');
             }
             break;
@@ -45,7 +44,7 @@ if ($page == 'StartPage') {
                     include('main.php');
                 }
             } else {
-                $error_msg = "Signup failed. Email may already be in use.";
+                echo "Signup failed. Email may already be in use.";
                 include('login.php');
             }
             break;

@@ -171,7 +171,7 @@ session_start();
                         rating: newRating,
                     },
                     success: function() {
-                        alert('Rating added successfully fr!');
+                        alert('Rating added successfully!');
                         fetchMovies(); // Refresh the movies list
                     },
                     error: function() {
