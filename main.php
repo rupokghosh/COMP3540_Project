@@ -57,10 +57,11 @@ if (session_status() == PHP_SESSION_NONE) {
 
         #movieTitle {
             padding: 10px;
-            margin: 10px;
+            margin: 20px;
             border: 1px solid #444;
             border-radius: 4px;
             font-size: 16px;
+            background-color: #E5E1DA;
         }
 
         button {
@@ -76,7 +77,7 @@ if (session_status() == PHP_SESSION_NONE) {
             padding: 10px;
             border: 1px solid;
             border-radius: 4px;
-            background-color: #FFF6E9;
+            background-color: #E5E1DA;
         }
 
         .movie {
@@ -88,17 +89,18 @@ if (session_status() == PHP_SESSION_NONE) {
         .watched-btn {
             font-size: 12px;
             padding: 10px 15px;
-            background-color: lightpink;
+            background-color: #80C4E9;
         }
 
         .delete-btn {
             font-size: 12px;
             padding: 10px 15px;
-            background-color: lightcoral;
+            background-color: #89A8B2;
         }
 
         #addMovieForm button {
-            background-color: lightgrey;
+            background-color: #333;
+            color: white;
             padding: 10px;
             margin: 10px;
             border: 1px solid #444;
@@ -110,7 +112,7 @@ if (session_status() == PHP_SESSION_NONE) {
         #signOut {
             margin-top: 30px;
             padding: 10px 15px;
-            background-color: #FC8F54;
+            background-color: #AE445A;
             color: white;
             border: none;
             border-radius: 4px;
