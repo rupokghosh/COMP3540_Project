@@ -104,7 +104,7 @@
         <p>Manage your movie watchlist</p>
 
         <div id="loginForm" class="form-container active">
-            <form method="POST" action="controller.php">
+            <form id="login" method="POST" action="controller.php">
                 <input type="hidden" name="page" value="StartPage">
                 <input type="hidden" name="command" value="SignIn">
                 <div>
@@ -121,7 +121,7 @@
         </div>
 
         <div id="signupForm" class="form-container">
-            <form method="POST" action="controller.php">
+            <form id="signup" method="POST" action="controller.php">
                 <input type="hidden" name="page" value="StartPage">
                 <input type="hidden" name="command" value="SignUp">
                 <div>
@@ -152,6 +152,46 @@
             document.getElementById('signupForm').classList.add('active');
             document.getElementById('loginForm').classList.remove('active');
         }
+        
+        document.getElementById('login').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const xhr = new XMLHttpRequest();
+
+            xhr.open('POST', 'controller.php', true);
+            xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+            xhr.onload = function() {
+                const response = JSON.parse(this.responseText);
+                if (response.success) {
+                    window.location.href = 'main.php';
+                } else {
+                    alert(response.message);
+                }
+            };
+
+            xhr.send(formData);
+        });
+
+        document.getElementById('signup').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const xhr = new XMLHttpRequest();
+
+            xhr.open('POST', 'controller.php', true);
+            xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+            xhr.onload = function() {
+                const response = JSON.parse(this.responseText);
+                if (response.success) {
+                    window.location.href = 'main.php';
+                } else {
+                    alert(response.message);
+                }
+            };
+
+            xhr.send(formData);
+        });
     </script>
 
 </body>

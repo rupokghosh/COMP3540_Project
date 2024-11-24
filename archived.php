@@ -125,7 +125,6 @@ session_start();
                 },
                 success: function(response) {
                     var movies = JSON.parse(response);
-                    console.log(movies)
                     var html = '';
                     movies.forEach(function(movie) {
                         html += `
@@ -145,7 +144,6 @@ session_start();
                     // Add event listener for Add Rating button
                     $('.add-rating-btn').on('click', function() {
                         var movieId = $(this).data('movie-id');
-                        console.log(movieId);
                         addRating(movieId);
                     })
                 }
@@ -158,8 +156,6 @@ session_start();
             var newRating = prompt("Enter your rating (1-5):");
             parseInt(newRating);
             parseInt(movieId)
-            console.log(newRating);
-            console.log(movieId);
             if (newRating >= 1 && newRating <= 5) {
                 $.ajax({
                     url: 'controller.php',

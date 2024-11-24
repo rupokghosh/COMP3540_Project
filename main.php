@@ -171,7 +171,6 @@ if (session_status() == PHP_SESSION_NONE) {
                     command: 'FetchMovies'
                 }, function(response) {
                     const movies = JSON.parse(response);
-                    console.log("Parsed Movies: ", movies);
                     const watchlist = $('#watchlist');
                     watchlist.empty();
 
@@ -229,7 +228,6 @@ if (session_status() == PHP_SESSION_NONE) {
                     command: 'DeleteMovie',
                     movieId: movieId
                 }, function(response) {
-                    console.log(response);
                     alert(response);
                     fetchMovies();
                 });

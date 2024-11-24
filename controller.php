@@ -23,10 +23,9 @@ if ($page == 'StartPage') {
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['user_id'] = $user['user_id'];
                 $_SESSION['email'] = $email;
-                include('main.php');
+                echo json_encode(['success' => true]);
             } else {
-                echo "Invalid email or password. Please try again.";
-                include('login.php');
+                echo json_encode(['success' => false, 'message' => 'Invalid email or password.']);
             }
             break;
 
@@ -41,11 +40,10 @@ if ($page == 'StartPage') {
                     $_SESSION['username'] = $username;
                     $_SESSION['user_id'] = $user['user_id'];
                     $_SESSION['email'] = $email;
-                    include('main.php');
+                    echo json_encode(['success' => true]);
                 }
             } else {
-                echo "Signup failed. Email may already be in use.";
-                include('login.php');
+                echo json_encode(['success' => false, 'message' => 'Signup failed. Email may already be in use.']);
             }
             break;
     }
